@@ -2,26 +2,36 @@
 ***
 
 <table><tr>
-  <td><img src="[https://th.bing.com/th/id/OIP.pWQN5n8eqyY2qMH7tlAabQHaEP?rs=1&pid=ImgDetMain](https://www.docker.com/app/uploads/2023/08/logo-guide-logos-1.svg)" alt="drawing" height="240px"/></td>
   <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Docker_Logo.png" alt="drawing" height="240px"/></td>
 </tr></table>
 
 ## Informations Générales
 ***
-Mise en place d'un base de données MySQL avec sous Quarkus.
+Creation d'un image Docker basée sur l'image pyspark-notebook
+Cette image intégre un connecteur mysql permettant l'enregistrement via pyspark
 
 ## Technologies
 ***
 Technologies utilisées:
 * Docker
+* Mysql
+* Python
+librairies:
+setuptools,mysql-connector-python,numpy,scipy,scikit-learn,pandas,psycopg2,ipython-sql,sqlalchemy
+
+
 ## Instalation
 ***
-Lancement de l'application Quarkus<br>
+Création de l image<br>
 ```
-$ mvn  clean
-$ mvn quarkus:dev
+$ docker build -t neogicel/neogiciel-jupyter .
+$ docker tag neogicel/neogiciel-jupyter neogicel/neogiciel-jupyter:2.08
+$ docker push neogicel/neogiciel-jupyter:2.08
 ```
-Le service est accessible sur http://localhost:8080
+
+Jupyter:
+Le service est accessible sur http://jupyter.neogiciel.net
 
 
-https://upload.wikimedia.org/wikipedia/commons/1/1e/Docker_Logo.png
+
+
