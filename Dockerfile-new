@@ -1,0 +1,45 @@
+# Use Ubuntu as the base image
+FROM ubuntu:20.04
+# Update Ubuntu packages
+RUN apt-get update && \
+    apt-get install -y curl \
+    wget \
+    vim 
+#User root
+USER root   
+
+# install Java
+RUN echo "-------------- Install JAVA -----------------"
+ARG JAVA_VERSION=openjdk-17-jdk
+RUN apt-get install -y $JAVA_VERSION
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+RUN export JAVA_HOME
+
+#Install python
+RUN echo "-------------- Install PYTHON -----------------"
+#RUN apt-get install -y python3.8 python3-pip python3.8-dev
+RUN  apt-get install -y --no-install-recommends python3.8 python3 python3-pip;
+
+# Update pip
+RUN echo "-------------- Install PIP3 -----------------"
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install pyspark
+RUN pip3 install jupyter
+RUN pip3 install numpy
+RUN pip3 install scipy
+RUN pip3 install scikit-learn
+RUN pip3 install pandas
+RUN pip3 install mysql-connector-python
+RUN pip3 install psycopg2-binary
+
+# Make port 8888 available to the world outside this container
+RUN echo "-------------- Home -----------------"
+RUN mkdir /home/neogiciel
+COPY file.csv /home/neogiciel/
+
+# Make port 8888 available to the world outside this container
+EXPOSE 8888
+# Define environment variable
+ENV NAME World
+# Run Jupyter Notebook when the container launches
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
