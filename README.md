@@ -15,10 +15,10 @@ Cette image intégre un connecteur mysql permettant l'enregistrement via pyspark
 Technologies utilisées:
 * Docker
 * Mysql
-* Python
+* Spark
+* Python<br>
 librairies:
 setuptools,mysql-connector-python,numpy,scipy,scikit-learn,pandas,psycopg2,ipython-sql,sqlalchemy
-
 
 ## Instalation
 ***
